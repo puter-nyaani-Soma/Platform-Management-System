@@ -1,0 +1,29 @@
+<%- include ('./partials/head.ejs') %>
+<body id="second">
+    <%- include ('./partials/header.ejs') %>
+  
+    
+        <div class="cont">
+            <div class="form-box Complains">
+                <h2>Complain</h2>
+                <form action="/complain" method="post">
+                    <div class="input-box">
+                        <span class="icon"><i class="fa-solid fa-user" style="color: #fff;"></i></span></span>
+                        <input type="text" name="username"  value=<%=user.username%> >
+                        <label for="USername-box" style="color:#ffffff; top:-5px">Username</label>
+                    </div>
+            
+                    <div class="complain-box">
+                        <!-- <span class="icon"><i class="fa-solid fa-key" style="color: #ffffff;"></i></span> -->
+                        <textarea name="complain" id="complain" required name="complain" rows="5" cols="33" ></textarea>
+                        <label for="complain" style="color:#ffffff; top:-5px">Complains</label>
+            
+                    </div>
+                    <script>username.value = "<%= user.username %>"</script>
+                <button type="submit" class="btn ">Submit</button></div>
+                <!-- <div class="login-register"><a class="login-link">Palasa?</a></div> -->
+                </form>
+            </div>
+        
+</body>
+</html>

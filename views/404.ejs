@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="404.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f0da6982b4.js" crossorigin="anonymous"></script>
+    
+    
+</head>
+<body>
+    <div id="background"></div>
+<div class="top">
+  <h1><%=code %></h1>
+  <h3><%=heading %></h3>
+</div>
+<div class="container">
+  <div class="ghost-copy">
+    <div class="one"></div>
+    <div class="two"></div>
+    <div class="three"></div>
+    <div class="four"></div>
+  </div>
+  <div class="ghost">
+    <div class="face">
+      <div class="eye"></div>
+      <div class="eye-right"></div>
+      <div class="mouth"></div>
+    </div>
+  </div>
+  <div class="shadow"></div>
+</div>
+<div class="bottom">
+    <p><%=message %></p>
+  
+    <div class="buttons">
+        <% if (code == 403) {%>
+            <span>
+                <form action="/login" method="get">
+        
+        
+                      <button class="btn">Login</button>
+                    
+                </form>
+            </span>
+            <% } %>
+        
+          <span>
+          <form action="/home" method="get">
+        
+        
+                <button class="btn">Home</button>
+              
+          </form>
+          </span>
+    </div>
+</div>
+
+<footer>
+  <!-- <p>made by <a href="https://codepen.io/juliepark"> julie</a> ♡ -->
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<%- include ('./partials/head.ejs') %>
+<body id="second">
+    
+    <%- include ('./partials/header.ejs') %>
+    
+    <div class="cont" id="pcont">
+
+        <div class="form-box Platforms">
+        <h2 id="ph2">Platform</h2>
+        <form action="/updatePlatforms" method="post">
+            <div class="radio-box">
+                <span class="icon"><i class="fa-solid fa-user" style="color: #fff;"></i></span>
+                <label for="USername-box" style="color:#ffffff;margin-top: 0px;margin-bottom: 20px;">Platform</label>
+                <label for="platformNo1">1<input type="radio" class="platformNo" name="platformNo" id="platformNo1" value="1"></label>
+                <label for="platformNo2">2<input type="radio" class="platformNo" name="platformNo" id="platformNo2" value="2"></label>
+                <label for="platformNo3">3<input type="radio" class="platformNo" name="platformNo" id="platformNo3" value="3"></label>
+                <label for="platformNo4">4<input type="radio" class="platformNo " name="platformNo" id="platformNo4" value="4"></label>
+                <label for="platformNo5">5<input type="radio" class="platformNo" name="platformNo" id="platformNo5" value="5"></label>
+                <label for="platformNo6">6<input type="radio" class="platformNo" name="platformNo" id="platformNo6" value="6"></label>
+            </div>
+            <label for="trainNo" style="color:#ffffff;top:-5px;margin-bottom: 15px;">Train</label>
+               <input list="trainNumbers" id="trainNo" name="trainNo" style="margin-left: 70px;">             
+               <datalist id="trainNumbers" style="margin-left: 0px;">
+                <% if (trains.length > 0) { %>
+                    <% trains.forEach(train => { %>
+                            
+                            <option value=<%=train.trainNo%>><%=train.trainName%></option>
+                           
+                            
+                            
+                        <%})}%>
+                        
+                    </datalist>              
+    <button type="submit" class="btn " style="
+margin-top: 15px;
+margin-bottom: -15;
+margin-bottom: -15;
+margin-bottom: 0px;
+">Submit</button></form>
+        
+        <!-- <div class="form-box Platforms">
+            <h2 id="ph2">Platform</h2>
+            <form action="/platforms" method="post">
+                
+                    <div class="radio-box">
+                        <span class="icon"><i class="fa-solid fa-user" style="color: #fff;"></i></span></span>
+                        <label for="USername-box" style="color:#ffffff; top:-5px">Platform</label>
+                        <label for="platformNo1">1<input type="radio"  class="platformNo" name="platformNo" id="platformNo1" value=1 ></label>
+                        <label for="platformNo2">2<input type="radio" class="platformNo" name="platformNo" id="platformNo2" value=2 ></label>
+                        <label for="platformNo3">3<input type="radio" class="platformNo" name="platformNo" id="platformNo3" value=3 ></label>
+                        <label for="platformNo4">4<input type="radio" class="platformNo "name="platformNo" id="platformNo4" value=4 ></label>
+                        <label for="platformNo5">5<input type="radio" class="platformNo" name="platformNo" id="platformNo5" value=5 ></label>
+                        <label for="platformNo6">6<input type="radio" class="platformNo" name="platformNo" id="platformNo6" value=6 ></label>
+                    </div>
+                    <label for="trainNo" style="color:#ffffff; top:-5px">Train</label>
+                       <input list="trainNumbers" id="trainNo" name="trainNo">
+                       
+
+                            <datalist id="trainNumbers">
+                                <option value="123">
+                                <option value="234">
+                                <option value="345">
+                                <option value="456">
+                                <option value="567">
+                            </datalist>              
+               
+            <button type="submit" class="btn ">Submit</button></div> -->
+           
+            </form>
+        </div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<%- include ('./partials/head.ejs') %>
+<body id="fourth">
+    
+    <%- include ('./partials/header.ejs') %>
+    <h1></h1>
+    <div class="cont" id="three">
+        <span class="icon-close"><a href="/home"><i class="fa-solid fa-xmark"></i></a></span>
+        <div class="form-box Register">
+            <h2>Train details</h2>
+            <form method="post">
+                <div class="input-box">
+                    <span class="icon"><i class="fa-solid fa-train" style="color: #ffffff;"></i></span></span>
+                    <input type="text" name="trainNo" id="" required ">
+                    <label for="USername-box">Train No</label>
+                    
+                </div>
+                <div class="input-box">
+                    <span class="icon"><i class="fa-solid fa-train" style="color: #ffffff;"></i></span></span>
+                    <input type="text" name="trainName" id="trainName" required ">
+                    <label for="trainName">Train Name</label>
+                    
+                </div>
+                <div class="input-box">
+                    
+                        <span class="icon"><i class="fa-solid fa-location-dot" style="color: #ffffff;"></i></span></span>
+                        <input type="text" name="from" id="" required ">
+                        <label for="from">From</label>
+                        
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><i class="fa-solid fa-location-dot" style="color: #ffffff;"></i></i></span></span>
+                        <input type="text" name="to" id="" required ">
+                        <label for="to">To</label>
+                        
+                    
+                        
+                </div>
+        
+                <div class="input-box">
+                    <span class="icon"><i class="fa-solid fa-train-tunnel" style="color: #ffffff;"></i></span>
+                    <input list="trainNumbers" id="trainType" name="trainType" style="margin-left: 0px;">             
+     
+                         <datalist id="trainNumbers" style="margin-left: 0px;">
+                             <option value="Express"></option>
+                             <option value="Passenger"></option>
+                             <option value="Mail"></option>
+                             <option value="Goods"></option>
+                         </datalist>
+                    <!-- <input type="text" name="trainType" id="" required "> -->
+                    <label for="trainType-box">Train Type</label>
+                    
+                </div>
+                <div class="input-box">
+                    <span class="icon"><i class="fa-solid fa-clock" style="color: #ffffff;"></i></span></span>
+                    <input type="time" name="arrivalTime" id="" required ">
+                    <label for="arrivalTime">Arrival Time</label>
+                    
+                </div>
+                <div class="input-box">
+                    <span class="icon"><i class="fa-solid fa-clock" style="color: #ffffff;"></i></span></span>
+                    <input type="time" name="departureTime" id="" required ">
+                    <label for="departureTime">Departure Time</label>
+                    
+                </div>
+                
+            <button type='submit' class="btn">Add</button>
+            
+            </form>
+        </div>
+    </div>
+</body>
+</html>

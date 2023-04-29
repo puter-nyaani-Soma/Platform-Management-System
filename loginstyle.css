@@ -1,0 +1,687 @@
+
+*{
+    font-family:poppins;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+  
+
+}
+*::-webkit-scrollbar{
+    display: none;
+  }
+h2{
+    font-family:poppins;
+    font-style: italic;
+}
+header{
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    padding:20px 100px;
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index: 99;
+}
+.logo{
+    font-size:2em;
+    color:white !important;
+    user-select: none;
+}
+.navigation a{
+    position: relative;
+    font-size: 1.1em;
+    font-style: normal;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+    color:white;
+    transition: 1s;
+}
+.navigation a::after :not(:last-child){
+    content: "";
+    border-bottom:4px solid white;
+    position: absolute;
+    width:100%;
+    left:0;
+    bottom:0;
+    height:3px;
+    border-radius: 2px;
+    transform: scaleX(0);
+    transition: transform .5s
+    
+}
+.navigation a:hover::after{
+    transform: scaleX(1);
+}
+.navigation .btn-login{
+    width:10em;
+    height: 3em;;
+    background: transparent;
+    color:white;
+    border:2px solid white;
+    margin-left: 40px;
+    transition:0.5s;
+    border-radius:6px
+
+}
+.navigation .btn-login:hover{
+    color:#0f1112;
+    background-color: white;
+}
+
+.btn-login{
+    color: #fff;
+}
+.cont{
+    position: relative;
+    height: 640px;;
+    width: 400px;
+    background:transparent;
+    border-radius:20px;
+    border: 3px solid rgba(255, 255, 255, 0.523);
+    backdrop-filter: blur(20px);
+    box-shadow:0 0 30px rgba(0, 0, 0, 0.502);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* transform: scale(0); */
+    transition: transform .5s ease, height 0.5s ease;
+    
+}
+.cont .form-box{
+    width:100%;
+    padding:40px;
+}
+.cont .icon-close{
+    position: absolute;
+    top:0;
+    right:0;
+    width:45px;
+    height: 45px;
+    color:#f92c6d;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:#fff;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 2;
+}
+.wrapper{
+    position: relative;
+    height: 440px;;
+    width: 400px;
+    background:transparent;
+    border-radius:20px;
+    border: 3px solid rgba(255, 255, 255, 0.523);
+    backdrop-filter: blur(20px);
+    box-shadow:0 0 30px rgba(0, 0, 0, 0.502);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: scale(0);
+    transition: transform .5s ease, height 0.5s ease;
+}
+.wrapper.active-popup{
+    transform: scale(1);
+}
+.wrapper.active{
+    height: 540px;;
+}
+.wrapper .form-box{
+    width:100%;
+    padding:40px;
+}
+.wrapper .form-box.login{
+    transition: transform .18s ease;
+    transform: translateX(0);
+}
+.wrapper.active .form-box.login{
+    /* display:none; */
+    transition: none;
+    transform: translateX(-480px);
+}
+.wrapper .form-box.Register{
+    position: absolute;
+    transform: translateX(400px);
+    transition: none;
+}
+.wrapper.active .form-box.Register{
+    transition: transform .18s ease;
+    transform: translateX(0);
+}
+
+
+.wrapper .icon-close{
+    position: absolute;
+    top:0;
+    right:0;
+    width:45px;
+    height: 45px;
+    color:#f92c6d;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:#fff;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+.form-box h2{
+    font-size:2.5em;
+    text-align: center;
+    /* justify-content: top; */
+    color:#f92c6d
+}
+.input-box{
+    margin-bottom:20px;
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin:30px 0;
+    border-bottom: 1px solid #fff;
+}
+ .radio-box{
+     display:flex;
+     flex-wrap: wrap;
+     position:relative;
+     justify-content: space-between;
+}
+.radio-box .platformNo{
+    position: relative;
+    
+}
+
+
+.input-box label{
+    position: absolute;
+    top:50%;
+    left:5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    font-weight: 500;
+    pointer-events: none;
+    transition: .25s;
+}
+
+.input-box input{
+    height: 100%;
+    width: 100%;
+    background-color:transparent;
+    border:none;
+    color:#fff;
+    padding: 0 35px 0 5px;
+    outline: none;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label{
+    color:#fff;
+    top:-5px;
+    
+}
+.input-box input:invalid~label{
+    content:"";
+    color:hsl(0, 0%, 100%);
+    
+}
+.input-box .icon{
+    position: absolute;
+    right:8px;
+    font-size: 1.1em;
+    line-height: 57px;
+
+}
+
+.complain-box textarea:focus~label,
+.complain-box textarea:valid~label{
+    color:#fff;
+    top:0px;
+    
+}
+.complain-box{
+    margin-bottom:20px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin:30px 0;
+    border-bottom: 1px solid #fff;
+    overflow: visible;
+    display: flexbox;
+    
+    
+}
+.complain-box label{
+    position: absolute;
+    top:50%;
+    left:5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    font-weight: 500;
+    pointer-events: none;
+    transition: .25s;
+    color:#fff;
+    
+}
+textarea{
+    height:200px;
+    /* height: 100%; */
+    width: 100%;
+    background-color:transparent;
+    border:none;
+    color:#fff;
+    padding: 5px 5px 0 5px;
+    outline: none;
+    resize: none;
+
+}
+.remember-forgot{
+    margin:-15px 0 15px;
+    font-size: 0.8em;
+    font-weight: 400;
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+}
+
+.remember-forgot label input{
+    accent-color:hsl(181, 100%, 37%) ;
+    margin-right: 3px;
+}
+.remember-forgot a{
+    text-decoration: none;
+    color: #fff;
+    
+}
+.remember-forgot a:hover{
+    transition:1s;
+    text-decoration:underline;
+}
+.error{
+    color: #65dcf4;
+    margin: 2px;
+    font-size: 0.8em;
+    font-weight: bold;
+    
+}
+.btn{
+    width: 100%;
+    height: 45px;
+    background-color: #fff;
+    border-radius:3px;
+    border: none;
+    outline: none;
+    color:#f92c6d;
+    cursor: pointer;
+    font-weight: 900;
+}
+.login-register{
+    text-align: center;
+    
+    font-size:.8em;
+    font-weight: 900;
+    margin:25px 0 5px;
+}
+.login-register a{
+    color: #fff;
+    text-decoration: none;
+    
+}
+.header-text{
+    position: relative;
+    font-size: 1.1em;
+    font-style: normal;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+    color:white;
+    display: inline;
+    
+}
+.header-text a{
+    position: relative;
+    font-size: 1.1em;
+    font-style: normal;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+    color:white;
+    display: inline;
+    text-align: center;
+    justify-content: center;
+
+}
+.all{
+    margin:20px !important;
+    flex-basis: 25%;
+    display: flex;
+    width: 200px;
+    height:300px;
+    
+}
+.container{
+    display:flex;
+    flex-wrap: wrap;
+    position: absolute;
+    top:150px;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    align-items:stretch;
+    justify-content: space-around;
+    
+}
+.all .det{
+    font-size:1.5em;
+    top: 0;
+    left:0px;
+    width: 100%;
+    color: #f92c6d;
+    position: absolute;
+    border-bottom: 2px solid #fff;
+    overflow:visible;
+    padding: 5px 20px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column-reverse;
+}
+
+.all p{
+    position: absolute;
+    top: 70px;
+    padding: 5px;
+}
+#trash{
+    position: absolute;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:#fff;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+.all.last{
+    flex-basis: 100%;
+    color: #fff;
+   
+    justify-content: center;
+}
+#pcont{
+    width: 400px;
+    height:250px;
+    overflow:visible;
+}
+#ph2{
+    top:-50px;
+    position: absolute;
+    left:110px;
+}
+
+#three{
+    height:740px;
+    top: 100px;
+    position: absolute;
+}
+.wrap1{
+    background-color: rgba(255, 255, 255, 0.832);
+    background-blend-mode: hue;
+    height: 600px;
+    width:1200px;
+    margin-left: 350px;
+    border-radius: 24px;
+    border-top-left-radius:480px;
+    border-bottom-right-radius:480px ;
+    display: flex;
+    justify-content: center;
+    flex-basis: 50%;;
+    
+}
+
+.wrap1 h2{
+    margin-top:25px;
+    margin-left: 150px;
+    color:#20437d;
+    
+}
+
+#four{
+    margin-top: 50px;;
+    width:960px;
+    background-color: #ffffff7a;
+    background-blend-mode: lighten;
+}
+.row1{
+    display: flex;
+    flex-basis: 50%;
+}
+.row1 .input-box{
+    padding-right: 10px;
+    margin-left: 20px;
+    margin-right: 20px;;
+}
+
+.row1 hr{
+    height : 50px;
+    margin-top:30px;
+    
+    
+}
+
+.addPass{
+    color:#f92c6d;
+    background-color:whitesmoke !important;
+}
+.row1 .col{
+    padding-right: 10px;
+    margin-left: 20px;
+    margin-right: 20px;;
+}
+#five{
+    margin-top: 50px;;
+    background-color: #eeecec7a;
+    background-blend-mode: lighten;
+    flex-direction: column;
+    flex-basis: 33%;
+    justify-content:flex-start;
+    align-items: center;
+    width:700px !important;
+    height: 350px;
+    box-sizing: border-box;
+    background-color: #f4366b;
+    color:white;
+    
+  
+    
+}
+#five .form-box{
+   padding:0;
+   align-items: center;
+}
+#five .form-box .newwrap{
+    background-color: #65dcf4;
+    height: 70%;
+    width: 100%;
+    flex-direction: column;
+    margin:0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:#0f1112;
+}
+#five .form-box .newwrap h1{
+    padding:0;
+    margin: 0;
+}
+#five .form-box .detwrap{
+    height: 100%;
+    flex-basis: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    flex-direction: row;
+    
+    
+}
+.row2{
+    display: flex;
+    flex-basis: 50%;
+    
+}
+.row2 .col{
+    padding-right: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.ticket.error{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.herocon{
+    display: flex;
+    min-height: 100vh;
+    min-width: 100vw;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgba(237, 243, 243, 0);
+    height: 100vh;
+}
+#hero{
+    display: flex;
+    color:#fff;
+    text-shadow: #05a6f6;
+    font-weight: bolder;
+        font-style: italic;
+        font-family: pacifico;
+    text-shadow: 2.5px 2.5px 5px #65dcf4;
+    font-size: 100px;
+    align-items: center;
+    justify-content: space-around;
+}
+#homebtn {
+    padding:10px;
+    background-color: rgba(245, 245, 245, 0);
+    color: whitesmoke;
+    text-align: center;
+    text-decoration: dashed;
+    border-radius: 5px;
+    border: 3px solid whitesmoke;
+    
+} 
+#homebtn:hover{
+    color:#0f1112;
+    background-color: white;
+    transition:0.5s;
+
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('res/wallpaperflare.com_wallpaper\ \(1\).jpg') no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow-x: hidden;
+}
+#hs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('res/wallpaperflare.com_wallpaper\ \(1\).jpg') no-repeat;
+    background-size: contain;
+    /* background-attachment: fixed; */
+    overflow-x: hidden;
+}
+#second{
+    background:url('res/3119299.jpg') no-repeat;
+    
+}
+#second h2,#second .btn{
+    color: rgb(240, 224, 194);
+}
+
+#third{
+background: url('res/wallpaperflare.com_wallpaper.jpg');
+color:white;
+}
+#third h2{
+    
+    color:#ebb56f
+}
+
+#fourth{
+    background: url('res/deep-voyage-warm-anime-landscapeii.jpg');
+    background-size: cover;
+
+}
+
+#fourth h2,#fourth .btn{
+    color:#ac6959;
+}
+#fifth{
+    background: url('res/3119406.jpg');
+    background-size: cover;
+
+}
+
+#fifth h2{
+    color:#ebb56f
+}
+#fifth .btn{
+    color:#ebb56f
+}
+#sixth{
+    background: url('res/deep-voyage-warm-anime-landscapeiiii.jpg');
+    background-size: cover;
+}
+#sixth .btn,#sixth h2{
+    color:#ff7300
+}
+#seventh{
+    background: url('res/seventh.jpg');
+    background-size: cover;
+}
+#seventh .btn,#seventh h2{
+
+}
+#vt{
+    width:90vw;
+    height:400px;
+    flex-direction: column;
+    overflow-y: scroll;
+    padding: 10px;
+}
+#vt .row1:first-child{
+    border-bottom: 2px solid #fff;
+
+
+}
+#vt .row1{
+    justify-content: space-between;
+    align-items: center;
+}
+#vt .row1 .col{
+    display: flex;
+    justify-content: space-between;
+    width:fit-content;
+}
+.cont.all h3{
+    display: inline-block;
+}

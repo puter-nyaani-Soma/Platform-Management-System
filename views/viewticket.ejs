@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="loginstyle.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f0da6982b4.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js" ></script>
+
+    <style>
+        .row1 .col {
+    padding-right: 10px;
+    margin-left: 5px;
+    margin-right: 20px;
+    
+}
+.row1{
+    
+}
+#passcol{
+    box-sizing: border-box;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+    
+    justify-content: center;
+    align-content: space-between;
+
+}
+h4{
+    margin-block-start:0;
+}
+#main{
+    border-right: 6px solid #fff;
+    margin-bottom:0;
+    width: 50%;
+    
+}
+#anomain{
+    height: 100%;
+    padding:0;
+    margin:0;
+    
+    /* margin-left:-150px;; */
+}
+    </style>
+</head>
+<body id="sixth">
+    <%- include ('./partials/header.ejs') %>
+    <div id="makepdf">
+    <div class="cont" id="five"> 
+        <span class="icon-close"><a href="javascript:generatePDF()" id="downloadButton"><i class="fa-solid fa-download"></i></a></span>
+        <div class="form-box">
+        <div class="newwrap">
+            <h1>Your ticket    <i class="fa-solid fa-ticket" style="color: #0f1112; transform:rotate(120deg)"></i></h1>
+        
+            <p>(Admit <%=ticket.numberOfPassengers%>)</p>
+        </div>
+
+        
+        <div class="detwrap">
+           <div class="row1" id="anomain">
+               <div class="col" id="main" style="margin-left: -50px;">
+                   <div class="row1" >
+                       <h1>Train <i class="fa-solid fa-train" style="color: #ffffff;"></i></h1>
+
+                   </div>
+                   <div class="row1">
+                       <div class="col">
+                           <h4><%=ticket.trainNo%></h4>
+                       </div>
+                       <div class="col">
+                           <h4><%=ticket.trainName%></h4>
+                       </div>
+
+                   </div>
+                   <div class="row1" style="margin-left:-5px">
+                    <div class="col">
+                        <div class="row1">
+                            <div class="col">
+                                <h4>Arr:<%=Math.floor(ticket.timeOfArrival/100)%>:<%=ticket.timeOfArrival%100 %></h4>
+                            </div>
+                        </div>
+                    </div>
+                   </div>
+                    <div class="row1" style="margin-left:-5px">
+                        <div class="col">
+                            <div class="row1">
+                                <div class="col">
+                                    <h4>Dep:<%=Math.floor(ticket.timeOfDeparture/100)%>:<%=ticket.timeOfDeparture%100 %></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row1">
+                     <div class="col"><h4><%=ticket.boarding%></h4>
+                     </div>
+                     <div class="col" style="margin:0;margin-left: -15px;"><h4><i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></h4></div>
+                     <div class="col"><h4><%=ticket.destination%></h4></div>
+                    </div>
+                   </div>
+                  
+
+                   <div class="col" id="passcol">
+                    <div class="row1">
+                        <h1 style=>Passenger</h1><i class="fa-solid fa-person-walking-luggage"  style="font-size:xx-large;position:absolute; left:75%; top:47%; color: #ffffff;"></i>
+                    </div>
+                    <div class="row1">
+                        <div class="col">
+                            <h4><%=ticket.passengerName%></h4>
+                            <% if (ticket.numberOfPassengers>1 ){%>
+                                <%ticket.passengerList.forEach(passenger => {%>
+                            <div class="row1">
+                            
+                                    <h5><%=passenger.name %></h5>
+                                    </div>
+                            
+                                    <%})%>
+                                    <%}%>
+                        </div>
+                        <div class="col">
+                            <h4><%=ticket.passengerAge%></h4>
+                            <% if (ticket.numberOfPassengers>1 ){%>
+                                <%ticket.passengerList.forEach(passenger => {%>
+                            <div class="row1">
+                    
+                                    <h5><%=passenger.age %></h5>
+                                    </div>
+                    
+                                    <%})%>
+                                    <%}%>
+                        </div>
+                    </div>
+                    
+                        <div class="col">
+                        </div>
+                            <div class="col">
+                            </div>
+                    </div>
+                        
+                        
+                    </div>
+                    
+                   </div>
+               </div>
+               <div class="col">
+                   <div class="row1">
+                   </div>
+                   <div class="row1">
+                   </div>
+               </div>
+           </div>
+                
+
+
+
+
+
+
+
+
+           
+                
+            
+            </div>
+            
+        </div>
+    
+        <script>
+            async function generatePDF() {
+                  
+                //Downloading
+                var downloading = document.getElementById("makepdf");
+                var doc = new jsPDF('l', 'pt');
+    
+                await html2canvas(downloading, {
+                    //allowTaint: true,
+                    //useCORS: true,
+                    width:800
+                }).then((canvas) => {
+                    //Canvas (convert to PNG)
+                    doc.addImage(canvas.toDataURL("image/png"), 'PNG', 0, 0, 700, 350);
+                })
+    
+                doc.save("Document.pdf");
+    
+                //End of downloading
+    
+            }
+        </script>
+           
+              
+          
+
+</body>

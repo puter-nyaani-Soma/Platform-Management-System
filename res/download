@@ -1,0 +1,62 @@
+<%- include ('./partials/head.ejs') %>
+<body>
+    
+    <%- include ('./partials/header.ejs') %>
+    <div class="wrapper">
+        <span class="icon-close"><i class="fa-solid fa-xmark"></i></span>
+        <div class="form-box login">
+            <h2>Login</h2>
+            <form action="#">
+                <div class="input-box">
+                    <span class="icon"><i class="fa-solid fa-envelope" style="color: #ffffff;"></i></span></span>
+                    <input type="email" name="email-box" id="" required ">
+                    <label for="email-box">Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><i class="fa-solid fa-key" style="color: #ffffff;"></i></span>
+                    <input type="password" name="password-box" id="" required ">
+                    <label for="password-box">password</label>
+                </div>
+                <div class="remember-forgot">
+                    <label for=""><input type="checkbox" name="" id="">Remember me</label>
+                    <a href="#">Marandhutiya?</a>
+                </div>
+            <button type="submit" class="btn ">Login</button>
+            <div class="login-register"><a href="#" class="register-link">Pudhusa?</a></div>
+            </form>
+
+
+        </div>
+
+        <div class="form-box Register">
+            <h2>Register</h2>
+            <form action="#">
+                <div class="input-box">
+                    <span class="icon"><i class="fa-solid fa-envelope" style="color: #ffffff;"></i></span></span>
+                    <input type="text" name="Username-box" id="" required ">
+                    <label for="USername-box">Username</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><i class="fa-solid fa-envelope" style="color: #ffffff;"></i></span></span>
+                    <input type="email" name="email-box" id="" required ">
+                    <label for="email-box">Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><i class="fa-solid fa-key" style="color: #ffffff;"></i></span>
+                    <input type="password" name="password-box" id="" required ">
+                    <label for="password-box">password</label>
+                </div>
+                <div class="remember-forgot">
+                    <label for=""><input type="checkbox" name="" id="">I accept to t&c</label>
+                    
+                </div>
+            <button type="submit" class="btn ">Register</button>
+            <div class="login-register"><a href="#" class="login-link">Palasa?</a></div>
+            </form>
+
+
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

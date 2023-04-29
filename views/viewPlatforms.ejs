@@ -1,0 +1,39 @@
+<%- include ('./partials/head.ejs') %>
+<body id="seventh">
+    
+    <%- include ('./partials/header.ejs') %>
+    <div class="cont" id=vt style="width:550px ;">
+        
+        <table style="color: white;">
+            <tr>
+                <th><h2>Platform</h2></th>
+                <th><h2>Train</h2></th>
+                <th>
+                    <h2>Train Name</h2>
+                </th>
+        
+            </tr>
+            <%if (platforms.length > 0) {%>
+                <% platforms.forEach(platform =>{ %>
+            <tr>
+                <td><%=platform.platformNo%></td>
+                <% if (platform.trainNo > -1){%>
+                    <td><%=platform.trainNo%></td>
+                <%} else{ %>
+                    <td>Free</td>
+                <%}%>                                                       
+                    <%trains.forEach(train =>{%>
+                        <%if(train.trainNo==platform.trainNo){%>
+                            <td><%=train.trainName%></td>
+                       <% }%>
+
+                   <% })%>
+                
+        
+            </tr>
+            <% }) %>
+            <%}%>
+        </table>
+    </div>
+</body>
+</html>
