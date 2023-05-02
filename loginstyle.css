@@ -647,6 +647,10 @@ color:white;
 #fifth .btn{
     color:#ebb56f
 }
+#fifth .ticket.error{
+    color:rgb(255, 255, 255)
+}
+
 #sixth{
     background: url('res/deep-voyage-warm-anime-landscapeiiii.jpg');
     background-size: cover;

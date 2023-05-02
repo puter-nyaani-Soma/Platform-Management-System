@@ -25,10 +25,10 @@ const handleErrors = (err) =>{
 
     //incorrect creds
     if(err.message.includes('Thavarana Password')){
-        errors['password']='Thavaru!!!!!!!!!!!'
+        errors['password']='Check your password!!!!'
     }
     if(err.message.includes('Thavarana Username')){
-        errors['username']='Thavaru!!!!!!!!!!!'
+        errors['username']='Check your username!!!!!'
     }
     return errors
 }

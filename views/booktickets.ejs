@@ -34,9 +34,21 @@
                 </div>
                 <div class="row1">
                   <div class="input-box">
-                      <span class="icon"><i class="fa-solid fa-train" style="color: #ffffff;"></i></span></span>
-                      <input type="text" name="trainNo" id=""  ">
-                      <label for="USername-box">Train No</label>
+                    <label for="trainNo" style="color:#ffffff;top:-5px;margin-bottom: 15px;">Train</label>
+                    <span class="icon"><i class="fa-solid fa-train" style="color: #ffffff;"></i></span>
+                    <input list="trainNumbers" id="trainNo" name="trainNo" style="margin-left: 0px;">             
+                    <datalist id="trainNumbers" style="margin-left: 0px;">
+                     <% if (trains.length > 0) { %>
+                         <% trains.forEach(train => { %>
+                                 
+                                 <option value=<%=train.trainNo%>><%=train.trainName%></option>
+                                
+                                 
+                                 
+                             <%})}%>
+                             
+                         </datalist>  
+                     
                   
                   </div>
                   <div class="input-box">

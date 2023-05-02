@@ -169,7 +169,17 @@ app.get('/viewtrains', (req, res) => {
 });
 
 app.get('/booktickets', (req, res) => {
-    res.render('./booktickets')
+    Train.find().sort({ createdAt: 1 })
+        .then((result) => {
+
+            if(result){
+            res.render('./booktickets', { trains: result })
+            }
+            else{
+                res.render('./booktickets')
+
+            }
+        })
 })
 
 app.get('/viewticket', (req, res) => {
