@@ -1,8 +1,8 @@
 const {Router} = require('express')
 const router=Router();
-const authController = require('../controllers/authController')
-
-
+const authController = require('../controllers/authController');
+const { requireAuth, isAdmin } = require('../middleware/authMiddleware')
+// router.use(requireAuth,'/home')
 router.get('/register',authController.register_get);
 router.post('/register',authController.register_post)
 router.post('/home',authController.register_post)

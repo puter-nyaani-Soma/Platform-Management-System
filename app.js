@@ -37,14 +37,8 @@ app.use(session({
     saveUninitialized: true,
 }));
 
-// mongoose.connect(dbURI)
-//     .then((result)=>{console.log('connected');
-//     app.listen(3000) } )
-//     .catch((err)=>{console.log(err)})
-
 mongoose.connect('mongodb://127.0.0.1:27017/testdb', { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
-
 
 db.on('error', (err) => {
     console.log(err)
@@ -56,37 +50,31 @@ app.listen(3000)
 
 app.set('view engine', 'ejs');
 
-
-console.log(__dirname)
-
-
-
-
-
-
-
-
-// app.use(express.static(__dirname +'/public'));
 app.use((req, res, next) => {
     res.locals.path = req.path;
     next();
 });
+
 app.use(express.urlencoded({ extended: true }))
 
-app.get('*', checkUser);
-app.get('/', (req, res) => {
-    // res.send()//auto header,status code
-    // res.sendFile('./home.ejs',{root:(__dirname)});
-    res.render('./home.ejs', { root: (__dirname) })
 
+app.get('*', checkUser);
+
+app.use(complainRoutes);
+
+app.use(authRoutes);
+
+app.use(ticketRoutes);
+app.get('/', (req, res) => {
+    res.render('./home.ejs', { root: (__dirname) })
 })
+
 app.get('', (req, res) => {
     res.render('./home.ejs', { root: (__dirname) })
-
 });
+
 app.get('/home', (req, res) => {
     res.render('./home.ejs', { root: (__dirname) })
-
 });
 
 app.get('/updatetrains', requireAuth, isAdmin, (req, res) => {
@@ -119,12 +107,6 @@ app.get('/updatePlatforms', requireAuth, isAdmin, (req, res) => {
             }
         })
 });
-
-
-//app.use(registerRoutes);
-app.use(complainRoutes);
-app.use(authRoutes);
-app.use(ticketRoutes);
 
 
 app.get('/profile', requireAuth, (req, res) => {
