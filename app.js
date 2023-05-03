@@ -24,6 +24,7 @@ const Ticket = require('./models/ticket');
 const complainRoutes = require('./routes/complainRoutes');
 const authRoutes = require('./routes/authRoutes')
 const ticketRoutes = require('./routes/ticketRoutes')
+const trainRoutes = require('./routes/trainRoutes')
 const { requireAuth, checkUser, isAdmin } = require('./middleware/authMiddleware')
 
 
@@ -65,6 +66,11 @@ app.use(complainRoutes);
 app.use(authRoutes);
 
 app.use(ticketRoutes);
+
+app.use(trainRoutes);
+
+
+
 app.get('/', (req, res) => {
     res.render('./home.ejs', { root: (__dirname) })
 })
@@ -123,31 +129,6 @@ app.post('/updatePlatforms', (req, res) => {
 })
 
 
-app.post('/updatetrains', (req, res) => {
-    console.log(req.body);
-    var at = req.body.arrivalTime.toString();
-    var at = at.substring(0, 2) + at.substring(3, 5);
-    var dt = req.body.departureTime.toString();
-    var dt = dt.substring(0, 2) + dt.substring(3, 5);
-    req.body.arrivalTime = at;
-    req.body.departureTime = dt;
-    console.log(req.body)
-    const train = new Train(req.body);
-    train.save()
-        .then((result) => {
-            res.redirect('/viewPlatforms')
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-})
-
-app.get('/viewtrains', (req, res) => {
-    Train.find().sort({ createdAt: 1 })
-        .then((result) => {
-            res.render('./viewtrains', { trains: result })
-        })
-});
 
 
 app.get('/403', (req, res) => {
@@ -212,12 +193,38 @@ const freePlatforms = async () => {
                     });
             }
         })
-}
-
-
-
-    // setInterval(assignPlatform,15000);
+    }
+    
+    
+    setInterval(assignPlatform,15000);
     // setInterval(freePlatforms,10000);
+    
 
 
 
+
+    // app.post('/updatetrains', (req, res) => {
+    //     console.log(req.body);
+    //     var at = req.body.arrivalTime.toString();
+    //     var at = at.substring(0, 2) + at.substring(3, 5);
+    //     var dt = req.body.departureTime.toString();
+    //     var dt = dt.substring(0, 2) + dt.substring(3, 5);
+    //     req.body.arrivalTime = at;
+    //     req.body.departureTime = dt;
+    //     console.log(req.body)
+    //     const train = new Train(req.body);
+    //     train.save()
+    //         .then((result) => {
+    //             res.redirect('/viewPlatforms')
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         })
+    // })
+    
+    // app.get('/viewtrains', (req, res) => {
+    //     Train.find().sort({ createdAt: 1 })
+    //         .then((result) => {
+    //             res.render('./viewtrains', { trains: result })
+    //         })
+    // });
