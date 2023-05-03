@@ -12,9 +12,6 @@ const cookieParser = require('cookie-parser');
 
 const session = require('express-session');
 
-const html2pdf = require('html2pdf');
-
-const html2canvas = require('html2canvas');
 // const dbURI='mongodb+srv://AdminDb:AdminDb@tourism.oenhiqj.mongodb.net/tourists?retryWrites=true&w=majority' 
 
 
@@ -26,6 +23,7 @@ const Ticket = require('./models/ticket');
 // const registerRoutes=require('./routes/registerRoutes');
 const complainRoutes = require('./routes/complainRoutes');
 const authRoutes = require('./routes/authRoutes')
+const ticketRoutes = require('./routes/ticketRoutes')
 const { requireAuth, checkUser, isAdmin } = require('./middleware/authMiddleware')
 
 
@@ -126,6 +124,7 @@ app.get('/updatePlatforms', requireAuth, isAdmin, (req, res) => {
 //app.use(registerRoutes);
 app.use(complainRoutes);
 app.use(authRoutes);
+app.use(ticketRoutes);
 
 
 app.get('/profile', requireAuth, (req, res) => {
@@ -168,112 +167,6 @@ app.get('/viewtrains', (req, res) => {
         })
 });
 
-app.get('/booktickets', (req, res) => {
-    Train.find().sort({ createdAt: 1 })
-        .then((result) => {
-
-            if(result){
-            res.render('./booktickets', { trains: result })
-            }
-            else{
-                res.render('./booktickets')
-
-            }
-        })
-})
-
-app.get('/viewticket', (req, res) => {
-    // let ticket= req.query.ticket
-    let ticket = req.session.ticket;
-    // console.log("data in res"+JSON.stringify(ticket))
-    res.render('./viewticket', { ticket: req.session.ticket })
-})
-app.post('/booktickets', (req, res) => {
-    console.log(req.body)
-
-    Train.findOne({ trainNo: req.body.trainNo })
-        .then((result) => {
-            console.log(result)
-            if (result) {
-                if (result.availableSeats < req.body.numberOfPassengers) {
-
-                    res.status(400).json({ errors: "sorry required seats arent available" })
-                }
-                else {
-                    result.availableSeats -= req.body.numberOfPassengers;
-
-                    let passengerList = [];
-                    let i = 0, j = 0, k = 0;
-                    if (req.body.numberOfPassengers > 1) {
-                        req.body.passengerList += '$'
-                        while (req.body.passengerList[i] != '$') {
-
-                            if (req.body.passengerList[i] == '-') {
-                                k = i;
-                            }
-                            if (req.body.passengerList[i] == ',') {
-
-                                passengerList.push({ name: req.body.passengerList.substring(j, k), age: Number(req.body.passengerList.substring(k + 1, i)) })
-                                j = i + 1;
-                                i++;
-
-                            }
-                            i++;
-                        }
-                        passengerList.push({ name: req.body.passengerList.substring(j, k), age: Number(req.body.passengerList.substring(k + 1, i)) })
-                    }
-                    // Create a new ticket object
-
-                    if (req.body.numberOfPassengers > 1) {
-
-                        const newTicket = new Ticket({
-                            trainNo: req.body.trainNo,
-                            passengerName: req.body.passengerName,
-                            passengerAge: req.body.passengerAge,
-                            boarding: req.body.boarding,
-                            destination: req.body.destination,
-                            passengerList: passengerList,
-                            numberOfPassengers: Object.keys(passengerList).length + 1
-
-                        });
-                        // Save the new ticket to the database
-                        newTicket.save()
-                            .then((result1) => {
-
-
-                                req.session.ticket = result1
-                                console.log("datad" + req.session.ticket)
-                                res.status(201).json({ ticket: result1 })
-                            });
-                    }
-                    else {
-                        const newTicket = new Ticket({
-                            trainNo: req.body.trainNo,
-                            passengerName: req.body.passengerName,
-                            boarding: req.body.boarding,
-                            destination: req.body.destination,
-                            numberOfPassengers: req.body.numberOfPassengers
-
-                        });
-                        // Save the new ticket to the database
-                        newTicket.save()
-                            .then((result1) => {
-
-                                req.session.ticket = result1
-                                console.log("datad" + req.session.ticket)
-                                res.status(201).send({ ticket: result1 })
-                            });
-
-                    }
-                    return result.save()
-                }
-            }
-            else {
-                res.status(400).json({ errors: "sorry Unknown Train" })
-            }
-        })
-});
-//error pages
 
 app.get('/403', (req, res) => {
     res.render('./404', { code: 403, heading: "Forbidden Access", message: "Boo, looks like a ghost aint letting u go to this page" })
