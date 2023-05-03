@@ -6,25 +6,18 @@ const morgan = require('morgan')
 
 const app = express();
 
-const User = require('./models/users');
-
 const cookieParser = require('cookie-parser');
 
 const session = require('express-session');
 
-// const dbURI='mongodb+srv://AdminDb:AdminDb@tourism.oenhiqj.mongodb.net/tourists?retryWrites=true&w=majority' 
-
-
-
 const Platform = require('./models/platform');
 const Train = require('./models/train');
-const Ticket = require('./models/ticket');
 
-// const registerRoutes=require('./routes/registerRoutes');
 const complainRoutes = require('./routes/complainRoutes');
 const authRoutes = require('./routes/authRoutes')
 const ticketRoutes = require('./routes/ticketRoutes')
 const trainRoutes = require('./routes/trainRoutes')
+const platformRoutes = require('./routes/platformRoutes')
 const { requireAuth, checkUser, isAdmin } = require('./middleware/authMiddleware')
 
 
@@ -69,6 +62,8 @@ app.use(ticketRoutes);
 
 app.use(trainRoutes);
 
+app.use(platformRoutes);
+
 
 
 app.get('/', (req, res) => {
@@ -83,49 +78,10 @@ app.get('/home', (req, res) => {
     res.render('./home.ejs', { root: (__dirname) })
 });
 
-app.get('/updatetrains', requireAuth, isAdmin, (req, res) => {
-    res.render('./updatetrains.ejs', { root: (__dirname) })
-});
-
-app.get('/viewplatforms', (req, res) => {
-    Platform.find().sort({ createdAt: 1 })
-        .then((results) => {
-            Train.find(results._id)
-                .then((result) => {
-                    res.render('./viewPlatforms', { platforms: results, trains: result })
-                })
-        })
-});
-
-
-app.get('/updatePlatforms', requireAuth, isAdmin, (req, res) => {
-
-    Train.find()
-        .then((results) => {
-            console.log(results)
-            if (results) {
-                console.log("in")
-                res.render('./updatePlatforms.ejs', { trains: results })
-
-            }
-            else {
-                res.redirect('/404')
-            }
-        })
-});
 
 
 app.get('/profile', requireAuth, (req, res) => {
     res.render('./details.ejs')
-})
-
-app.post('/updatePlatforms', (req, res) => {
-    console.log(req.body);
-    let tNo = req.body.trainNo;
-    let pNo = req.body.platformNo;
-    Platform.update(pNo, tNo);
-    Train.update(tNo, pNo);
-    res.redirect('/home')
 })
 
 
@@ -179,7 +135,7 @@ const freePlatforms = async () => {
     let filter = { departureTime: { $lt: currTime } };
     //global.dno=0;
     Train.findOneAndUpdate({ departureTime: { $lt: currTime } }, { platformNo: 99 })
-        .then(result => {
+    .then(result => {
             if (result) {
                 console.log("found left train", result.trainNo);
                 console.log("Deleted entry from ", result.platformNo)
@@ -199,10 +155,10 @@ const freePlatforms = async () => {
     setInterval(assignPlatform,15000);
     // setInterval(freePlatforms,10000);
     
-
-
-
-
+    
+    
+    
+    
     // app.post('/updatetrains', (req, res) => {
     //     console.log(req.body);
     //     var at = req.body.arrivalTime.toString();
@@ -218,13 +174,40 @@ const freePlatforms = async () => {
     //             res.redirect('/viewPlatforms')
     //         })
     //         .catch((err) => {
-    //             console.log(err);
-    //         })
+        //             console.log(err);
+        //         })
     // })
     
     // app.get('/viewtrains', (req, res) => {
     //     Train.find().sort({ createdAt: 1 })
     //         .then((result) => {
-    //             res.render('./viewtrains', { trains: result })
+        //             res.render('./viewtrains', { trains: result })
+    //         })
+    // });
+    
+    // app.get('/viewplatforms', (req, res) => {
+    //     Platform.find().sort({ createdAt: 1 })
+    //         .then((results) => {
+    //             Train.find(results._id)
+    //                 .then((result) => {
+    //                     res.render('./viewPlatforms', { platforms: results, trains: result })
+    //                 })
+    //         })
+    // });
+    
+    
+    // app.get('/updatePlatforms', requireAuth, isAdmin, (req, res) => {
+    
+    //     Train.find()
+    //         .then((results) => {
+    //             console.log(results)
+    //             if (results) {
+    //                 console.log("in")
+    //                 res.render('./updatePlatforms.ejs', { trains: results })
+    
+    //             }
+    //             else {
+    //                 res.redirect('/404')
+    //             }
     //         })
     // });

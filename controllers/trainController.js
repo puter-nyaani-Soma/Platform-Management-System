@@ -22,3 +22,7 @@ module.exports.updatetrains_post=(req,res) =>{
             console.log(err);
         })
 }
+
+module.exports.updatetrains_get=(req,res)=> {
+    res.render('./updatetrains.ejs', { root: (__dirname) })
+}

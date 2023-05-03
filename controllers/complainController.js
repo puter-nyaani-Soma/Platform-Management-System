@@ -1,3 +1,4 @@
+const { isAdmin } = require('../middleware/authMiddleware');
 const Complain =  require('../models/complain');
 
 
@@ -19,14 +20,19 @@ module.exports.complain_post=(req,res)=>{
     })
 }
 module.exports.allcomplains_get=(req,res)=>{
-    Complain.find().sort({createdAt:-1})
-    .then((result)=>{
-        res.render('./allcomplains',{complains:result})
-    })
+    if (isAdmin) {
+        Complain.find().sort({createdAt:-1})
+        .then((result)=>{
+            res.render('./allcomplains.ejs',{root:(__dirname),complains:result})
+        })
+    }
+    else{
+        res.redirect('/403')
+    }
 }
 module.exports.allcomplains_post=(req,res) =>{
     const id = req.body.id;
-    console.log('del',id)
+    if(isAdmin){
     Complain.findByIdAndDelete(id)
       .then(result => {
         res.redirect('/allcomplains');
@@ -35,4 +41,8 @@ module.exports.allcomplains_post=(req,res) =>{
       .catch(err => {
         console.log(err);
       });
+    }
+    else{
+        res.redirect('/403')
+    }
 }

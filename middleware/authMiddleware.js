@@ -48,6 +48,7 @@ const checkUser=(req,res,next)=>{
     }
 }
 const isAdmin =(req,res,next) => {
+        
     if(!res.locals.user.isAdmin){
         res.redirect('/403')
     }
