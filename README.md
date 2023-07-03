@@ -2,7 +2,10 @@
 The Railway Platform Management System is a web-based application that allows the admin to manage trains and platforms while users can book tickets, provide complaints and track their journey details.
 
 # Features
-###Authentication using JWT 
+
+## Authentication
+User Authentication is implemented using JWT
+
 ## Admin Dashboard
 ### Add/Update/Delete Trains
 The admin can add, update or delete train details such as train name, arrival time, departure time and platform number.
@@ -10,9 +13,11 @@ The admin can add, update or delete train details such as train name, arrival ti
 The admin can update the platform status as free or occupied according to the train schedule.
 ## User Dashboard
 ### Book Tickets
-Users can search for available trains, select their preferred train and seat type, and book their tickets.
+Users can search for available trains, select their preferred train and seat type, and book their tickets and download pdf copy of the ticket.
 ### Complaints and Feedback
 Users can provide complaints or feedback on their journey experience. The admin can view these complaints and resolve them accordingly.
+### View Train/Platform Details
+Users can view the details of the Trains and Platforms
 # Technologies Used
 * Node.js for server-side scripting
 * Express.js for server-side web application framework
