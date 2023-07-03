@@ -2,7 +2,7 @@
 The Railway Platform Management System is a web-based application that allows the admin to manage trains and platforms while users can book tickets, provide complaints and track their journey details.
 
 # Features
-##Authenticatio
+## Authentication
 User Authentication is implemented using JWT
 ## Admin Dashboard
 ### Add/Update/Delete Trains
